@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Interactive Quiz</title>
+    <style>
+      /* Add CSS styles here */
+      /* Example styles for quiz layout */
+      .quiz-container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+
+      .question {
+        margin-bottom: 10px;
+      }
+
+      .option {
+        margin-bottom: 5px;
+      }
+
+      #submit-btn {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="quiz-container">
+      <h2>Interactive Quiz</h2>
+      <form id="quiz-form">
+        <div class="question">
+          <p>1. What is the capital of France?</p>
+          <div class="option">
+            <input type="radio" name="q1" value="a" /> a) Paris
+          </div>
+          <div class="option">
+            <input type="radio" name="q1" value="b" /> b) London
+          </div>
+          <div class="option">
+            <input type="radio" name="q1" value="c" /> c) Rome
+          </div>
+        </div>
+
+        <!-- Add more questions and options here -->
+
+        <button id="submit-btn" type="submit">Submit</button>
+      </form>
+
+      <div id="result" style="display: none">
+        <h3>Quiz Result</h3>
+        <p id="score"></p>
+        <p id="message"></p>
+      </div>
+    </div>
+
+    <script>
+      // JavaScript logic here
+      const quizForm = document.getElementById("quiz-form");
+      const resultDiv = document.getElementById("result");
+      const scorePara = document.getElementById("score");
+      const messagePara = document.getElementById("message");
+
+      // Define the correct answers
+      const correctAnswers = {
+        q1: "a", // Update with the correct answer for each question
+        // Add more answers here
+      };
+
+      quizForm.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent form submission
+
+        let score = 0;
+
+        // Iterate through the form elements and check user's answers
+        for (let i = 0; i < quizForm.elements.length; i++) {
+          const element = quizForm.elements[i];
+
+          if (element.type === "radio" && element.checked) {
+            const questionName = element.name;
+            const userAnswer = element.value;
+
+            if (userAnswer === correctAnswers[questionName]) {
+              score++;
+            }
+          }
+        }
+
+        // Display the score and message
+        scorePara.textContent =
+          "Your score: " + score + "/" + Object.keys(correctAnswers).length;
+
+        if (score === Object.keys(correctAnswers).length) {
+          messagePara.textContent =
+            "Congratulations! You got all the answers correct!";
+        } else {
+          messagePara.textContent =
+            "Keep practicing! You can do better next time!";
+        }
+
+        resultDiv.style.display = "block";
+      });
+    </script>
+  </body>
+</html>
