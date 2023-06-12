@@ -12,7 +12,10 @@ app.use(cors());
 //const apiKey = process.env.OPENAI_API_KEY;
 const apiKey = "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"
 const orgKey = "org-TwcGJdld6pQCyszpn9Y4c7AU"
-
+app.get('/', (req, res) => {res.send('<h1>Hello World!</h1>')});
+app.get('/contacts', function(req, res) {
+    res.sendFile(__dirname + '/kathy.html');
+});
 app.post('/api', async (req, res) => {
     console.log('POST request received');
     const data = req.body;
