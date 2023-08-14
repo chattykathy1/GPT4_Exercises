@@ -1,3 +1,11 @@
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    if (request.message === "getSelectedText") {
+        var selectedText = window.getSelection().toString().trim();
+        sendResponse({ text: selectedText });
+    }
+});
+
+
 document.addEventListener('mouseup', function() {
    // get selected text and send to background.js
     var selectedText = window.getSelection().toString().trim();

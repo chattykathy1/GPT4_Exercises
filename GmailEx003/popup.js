@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', function() {
+
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     console.log("listener2 got message: " + JSON.stringify(request.text));
     document.getElementById('text').innerText = request.text;
@@ -27,5 +29,4 @@ document.getElementById('text').addEventListener('click', function() {
         });
     })
     })});
-
-    
+});
